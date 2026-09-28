@@ -69,7 +69,7 @@ cd ..
 
 # --------------------------------------------------------- clé et accueil ---
 
-cp gatortools.asc gatortools.gpg public/
+cp gatortools.asc gatortools.gpg install.sh public/
 cp index.html public/
 touch public/.nojekyll
 echo "public/ : $(find public/pool -name '*.deb' | wc -l) paquet(s)"

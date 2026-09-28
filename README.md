@@ -6,6 +6,13 @@ Les paquets .deb des logiciels GatorTools, publiés sur GitHub Pages :
 ## Installer
 
 ```bash
+wget -qO- gatortools.github.io/apt/install.sh | sudo sh
+sudo apt install clonegator
+```
+
+`install.sh` écrit la clé et la source, puis met apt à jour. À la main :
+
+```bash
 sudo install -d /etc/apt/keyrings
 wget -qO- https://gatortools.github.io/apt/gatortools.gpg | sudo tee /etc/apt/keyrings/gatortools.gpg > /dev/null
 echo "deb [signed-by=/etc/apt/keyrings/gatortools.gpg] https://gatortools.github.io/apt stable main" \

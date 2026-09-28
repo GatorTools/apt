@@ -25,6 +25,9 @@
   installés et mis à jour avec le reste du système.</p>
 
   <h2>Ajouter le dépôt</h2>
+<pre><code>wget -qO- gatortools.github.io/apt/install.sh | sudo sh</code></pre>
+  <p>Le script (<a href="install.sh">install.sh</a>) écrit la clé et la source, puis met apt à jour.
+  À la main, c'est l'équivalent de :</p>
 <pre><code>sudo install -d /etc/apt/keyrings
 wget -qO- https://gatortools.github.io/apt/gatortools.gpg | sudo tee /etc/apt/keyrings/gatortools.gpg &gt; /dev/null
 echo "deb [signed-by=/etc/apt/keyrings/gatortools.gpg] https://gatortools.github.io/apt stable main" \
