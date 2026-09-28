@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dépôt APT · GatorTools</title>
+  <style>
+    :root { --vert: #036725; --fond: #f7f9f6; --texte: #1d2529; --code: #eef2ec; color-scheme: light; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --vert: #5cc783; --fond: #101413; --texte: #e3e8e4; --code: #1c2220; color-scheme: dark; }
+    }
+    :root[data-theme="dark"] { --vert: #5cc783; --fond: #101413; --texte: #e3e8e4; --code: #1c2220; color-scheme: dark; }
+    body { margin: 0; background: var(--fond); color: var(--texte);
+           font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 46rem; margin: 0 auto; padding: 40px 16px; }
+    h1 { border-bottom: 3px solid var(--vert); padding-bottom: 8px; }
+    a { color: var(--vert); }
+    pre { background: var(--code); padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Dépôt APT de GatorTools</h1>
+  <p>Les logiciels <a href="https://gatortools.github.io/">GatorTools</a> pour Debian et Ubuntu,
+  installés et mis à jour avec le reste du système.</p>
+
+  <h2>Ajouter le dépôt</h2>
+<pre><code>sudo install -d /etc/apt/keyrings
+wget -qO- https://gatortools.github.io/apt/gatortools.gpg | sudo tee /etc/apt/keyrings/gatortools.gpg &gt; /dev/null
+echo "deb [signed-by=/etc/apt/keyrings/gatortools.gpg] https://gatortools.github.io/apt stable main" \
+  | sudo tee /etc/apt/sources.list.d/gatortools.list
+sudo apt update</code></pre>
+
+  <h2>Installer CloneGator</h2>
+<pre><code>sudo apt install clonegator</code></pre>
+  <p>Les mises à jour arrivent ensuite avec <code>sudo apt upgrade</code>.</p>
+
+  <h2>Clé de signature</h2>
+  <p>Le dépôt est signé par la clé « GatorTools APT », d'empreinte
+  <code>3989 0A8C E7A8 FF4B B870 7C7D 7365 5D5A 2C79 54A6</code>. Elle est publiée ici en deux formats :
+  <a href="gatortools.gpg">gatortools.gpg</a> (binaire, pour <code>signed-by</code>) et
+  <a href="gatortools.asc">gatortools.asc</a> (texte).</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+# Reconstruit et publie le dépôt APT à partir des dernières releases.
+name: publier
+
+on:
+  schedule:
+    - cron: "17 * * * *"  # chaque heure : une nouvelle release est prise d'elle-même
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Outils
+        run: sudo apt-get install -y -qq apt-utils gnupg > /dev/null
+      - name: Clé de signature
+        env:
+          CLE_SIGNATURE: ${{ secrets.CLE_SIGNATURE }}
+        run: |
+          printf '%s\n' "$CLE_SIGNATURE" | gpg --batch --import
+          echo "CLE=$(gpg --list-secret-keys --with-colons | awk -F: '/^fpr/{print $10; exit}')" >> "$GITHUB_ENV"
+      - name: Construire
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./outils/construire.sh
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deploiement
+        uses: actions/deploy-pages@v4

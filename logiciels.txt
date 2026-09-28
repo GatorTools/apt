@@ -1,0 +1,4 @@
+# Les dépôts GitHub dont les releases alimentent le dépôt APT, un par ligne.
+# Chaque release fournit un ou plusieurs paquets .deb versionnés
+# (nom_version_architecture.deb) ; les trois dernières versions sont gardées.
+GatorTools/CloneGator
