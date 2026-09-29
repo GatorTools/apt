@@ -2,3 +2,4 @@
 # Chaque release fournit un ou plusieurs paquets .deb versionnés
 # (nom_version_architecture.deb) ; les trois dernières versions sont gardées.
 GatorTools/CloneGator
+GatorTools/GatorPXE
